@@ -1,0 +1,26 @@
+services:
+    embs_api:
+        build: ./
+        command: uvicorn app:app --proxy-headers --host 0.0.0.0 --port 8000  --reload
+        env_file:
+            - .env
+        volumes:
+            - .:/api-data
+        ports:
+            - 3007:8000
+
+        networks:
+            - embs_network
+    smartwatch_data_stream:
+        build: ./
+        command: python -u stream_data.py
+        env_file:
+            - .env
+        networks:
+            - embs_network
+volumes:
+    dbdata6:
+
+networks:
+  embs_network:
+    driver: bridge

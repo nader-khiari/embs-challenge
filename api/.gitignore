@@ -1,0 +1,5 @@
+venv/*
+*/__pycache__/*
+/FirebaseHelpers/firebase_key.json
+.env
+*.ipynb
